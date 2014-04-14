@@ -18,6 +18,6 @@ public class LocalThreadFactory implements ThreadFactory {
     }
 
     public LocalThread newLocalThread(final Runnable runnable) {
-        return new LocalThread(threadId++);
+        return new LocalThread(threadId++, runnable);
     }
 }

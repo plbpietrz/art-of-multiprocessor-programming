@@ -7,7 +7,8 @@ public class LocalThread extends Thread {
 
     private int threadId;
 
-    public LocalThread(int threadId) {
+    public LocalThread(int threadId, Runnable runnable) {
+        super(runnable);
         this.threadId = threadId;
     }
 
@@ -16,6 +17,12 @@ public class LocalThread extends Thread {
             return ((LocalThread) localThread).getThreadId();
         else
             return (int) localThread.getId();
+    }
+
+    @Override
+    public void run() {
+        System.out.println("LocalThread " + threadId + " started");
+        super.run();
     }
 
     public int getThreadId() {

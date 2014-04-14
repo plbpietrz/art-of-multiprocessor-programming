@@ -7,7 +7,11 @@ import rhx.tut.thread.common.LocalThread;
  */
 public class LockOne implements Lock {
 
-    private boolean[] flag;
+    private final boolean[] flag;
+
+    public LockOne(int n) {
+        this.flag = new boolean[n];
+    }
 
     @Override
     public void lock() {

@@ -18,8 +18,8 @@ public class MainMutualExclusion implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        int incrementCount = 20_000;
-        Lock lock = null;
+        int incrementCount = 1000;
+        Lock lock = new LockOne(2);
         final Counter counter = new Counter(0, lock);
         final LocalThreadFactory factory = new LocalThreadFactory();
 
@@ -39,7 +39,12 @@ public class MainMutualExclusion implements Runnable {
 
     @Override
     public void run() {
-        while (--incrementCount > 0)
+        int incCount = 0;
+        while (0 < incrementCount--) {
             counter.getAndIncrement();
+            if (++incCount % 50 == 0) {
+                System.out.println(incCount + " iterations");
+            }
+        }
     }
 }
