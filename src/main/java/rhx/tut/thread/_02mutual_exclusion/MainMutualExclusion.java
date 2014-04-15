@@ -1,5 +1,6 @@
 package rhx.tut.thread._02mutual_exclusion;
 
+import rhx.tut.thread.common.LocalThread;
 import rhx.tut.thread.common.LocalThreadFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -43,7 +44,7 @@ public class MainMutualExclusion implements Runnable {
         while (0 < incrementCount--) {
             counter.getAndIncrement();
             if (++incCount % 50 == 0) {
-                System.out.println(incCount + " iterations");
+                System.out.println("Thread:" + LocalThread.getLocalThreadId(Thread.currentThread()) + ", iteration: " + incCount);
             }
         }
     }
