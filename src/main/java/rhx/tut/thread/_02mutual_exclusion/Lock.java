@@ -6,8 +6,8 @@ package rhx.tut.thread._02mutual_exclusion;
  */
 public interface Lock {
 
-    public void lock();
+    void lock();
 
-    public void unlock();
+    void unlock();
 
 }
