@@ -1,4 +1,4 @@
-ArtOfMultithreadedProgramming
+Art of Multithreaded Programming
 =============================
 
-Java version of my '*Art of Multithreaded Programming*' exercises.
+Excersises and code related to '*The Art of Multiprocessor Programming*' by _Maurice Herlihy_ and _Nir Shavit_.
