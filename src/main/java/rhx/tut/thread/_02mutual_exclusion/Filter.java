@@ -7,14 +7,14 @@ import rhx.tut.thread.common.LocalThread;
  */
 public class Filter implements Lock {
 
-    private final int[] level;
-    private final int[] victim;
+    private volatile int[] level;
+    private volatile int[] victim;
 
-    public Filter(final int n) {
-        level = new int[n];
-        victim = new int[n];
+    public Filter(final int size) {
+        level = new int[size];
+        victim = new int[size];
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < size; ++i) {
             level[i] = 0;
         }
     }
@@ -27,9 +27,11 @@ public class Filter implements Lock {
             victim[i] = me;
             // there exists a k that is different from me
             for (int k = 0; k < level.length; ++k) {
-                while ((k != me) && (level[k] >= i && victim[i] == me)) {
-                }
-                k = 0;
+                if (k != me) {
+                    while (level[k] >= i && victim[i] == me) {}
+                    break;
+                } else
+                    continue;
             }
         }
     }

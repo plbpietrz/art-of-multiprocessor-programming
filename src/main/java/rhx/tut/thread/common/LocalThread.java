@@ -19,6 +19,14 @@ public class LocalThread extends Thread {
             return (int) localThread.getId();
     }
 
+    public static <T extends Thread> int getLocalThreadId() {
+        Thread localThread = Thread.currentThread();
+        if (localThread instanceof LocalThread)
+            return ((LocalThread) localThread).getThreadId();
+        else
+            return (int) localThread.getId();
+    }
+
     @Override
     public void run() {
         System.out.println("LocalThread " + threadId + " started");
